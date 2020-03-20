@@ -12,13 +12,11 @@ class MovimentacaoBase(BaseModel):
 
 class MovimentacaoCreate(MovimentacaoBase):
     conta_id: int = None
-    pass
 
 
 class Movimentacao(MovimentacaoBase):
     conta_id: int = None
     created_date: date = None
-    pass
 
 
 class MovimentacaoInDBBase(MovimentacaoBase):

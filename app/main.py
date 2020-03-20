@@ -2,7 +2,6 @@ from fastapi import FastAPI
 import uvicorn
 from app.api.api_v1.api import api_router
 from app.core import config
-from app.models import conta, movimentacao
 from app.core.database import Base, engine
 
 Base.metadata.create_all(bind=engine)
