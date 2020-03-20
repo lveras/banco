@@ -1,12 +1,18 @@
 from fastapi import APIRouter, Depends
 from app import crud
 from sqlalchemy.orm import Session
-from app.api.api_v1.utils.db import get_db
-from app.schemas.conta import Conta
-from app.models.conta import Conta as DBConta
+from app.core.database import get_db
+from app.schemas import conta
 router = APIRouter()
 
 
-@router.post("/conta/{id}", response_model=Conta)
+@router.get("/{id}", response_model=conta.Conta)
 def ver_conta(id: int, db: Session = Depends(get_db)):
-    ...
+    conta = crud.conta.get(db_session=db, id=id)
+    return conta
+
+
+@router.post("/", response_model=conta.Conta)
+def create_conta(*, db: Session = Depends(get_db),
+                 conta_in: conta.ContaCreate):
+    return crud.conta.create(db_session=db, obj_in=conta_in)
