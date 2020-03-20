@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from datetime import date
+from datetime import datetime
 
 
 class MovimentacaoBase(BaseModel):
@@ -16,7 +16,7 @@ class MovimentacaoCreate(MovimentacaoBase):
 
 class Movimentacao(MovimentacaoBase):
     conta_id: int = None
-    created_date: date = None
+    created_date: datetime = None
 
 
 class MovimentacaoInDBBase(MovimentacaoBase):
