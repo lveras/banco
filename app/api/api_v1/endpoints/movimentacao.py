@@ -7,15 +7,20 @@ from typing import List
 
 router = APIRouter()
 
-TIPOS_MOVIMENTACAO = ['saque', 'deposito', 'transferencia']
+
+def verifica_conta(conta_id: int, db):
+    conta = crud.conta.get(db_session=db, id=conta_id)
+    if not conta:
+        raise HTTPException(status_code=422, detail="Conta nao encontrada")
 
 
-@router.post("/", response_model=List[movimentacao.Movimentacao])
+@router.post("/deposito", response_model=List[movimentacao.Movimentacao])
 def create_deposito(*, db: Session = Depends(get_db),
                     movimentacao_in: movimentacao.MovimentacaoCreate):
-    conta = crud.conta.get(db_session=db, id=movimentacao_in.conta_id)
-    if not conta:
-        raise HTTPException(status_code=422, detail="Conta não encontrada")
-    if movimentacao_in.tipo not in TIPOS_MOVIMENTACAO:
-        raise HTTPException(status_code=422, detail="Tipo inválido")
-    return crud.movimentacao.create(db_session=db, obj_in=movimentacao_in)
+    verifica_conta(conta_id=movimentacao_in.conta_id, db=db)
+    mov_in = movimentacao.MovimentacaoCreateTipo(
+        valor=movimentacao_in.valor,
+        conta_id=movimentacao_in.conta_id,
+        tipo='deposito',
+    )
+    return crud.movimentacao.create(db_session=db, obj_in=mov_in)

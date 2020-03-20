@@ -3,7 +3,6 @@ from datetime import datetime
 
 
 class MovimentacaoBase(BaseModel):
-    tipo: str = None
     valor: float = None
 
     class Config:
@@ -14,7 +13,12 @@ class MovimentacaoCreate(MovimentacaoBase):
     conta_id: int = None
 
 
+class MovimentacaoCreateTipo(MovimentacaoCreate):
+    tipo: str = None
+
+
 class Movimentacao(MovimentacaoBase):
+    tipo: str = None
     conta_id: int = None
     created_date: datetime = None
 
