@@ -2,9 +2,7 @@ from pydantic import BaseModel
 
 
 class MovimentacaoBase(BaseModel):
-    tipo: str
-    valor: float
-    conta_id = int
+    pass
 
 
 class MovimentacaoCreate(MovimentacaoBase):
@@ -12,11 +10,14 @@ class MovimentacaoCreate(MovimentacaoBase):
 
 
 class MovimentacaoInDBBase(MovimentacaoBase):
-    id: int
-
-    class Config:
-        orm_mode = True
+    id: int = None
 
 
 class Movimentacao(MovimentacaoBase):
+    tipo: str = None
+    valor: float = None
+    conta_id: int = None
+
+    class Config:
+        orm_mode = True
     pass
