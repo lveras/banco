@@ -14,9 +14,9 @@ def test_cria_conta():
     assert type(data['movimentacoes']) is list
 
 
-def test_lista_conta_pelo_id():
+def test_pega_extrato_conta():
     c = client.post(url="/api/v1/conta/", json={})
-    response = client.get(url="/api/v1/conta/{}".format(c.json()['id']))
+    response = client.get(url="/api/v1/conta/extrato/{}".format(c.json()['id']))
     data = response.json()
     assert response.status_code == 200
     assert 'id' in data
