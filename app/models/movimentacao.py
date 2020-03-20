@@ -9,5 +9,5 @@ class Movimentacao(Base):
     id = Column(Integer, primary_key=True, index=True)
     tipo = Column(String, index=True)
     valor = Column(Float, index=True)
-    conta_id = Column(Integer, ForeignKey("contas.id"))
+    conta_id = Column(Integer, ForeignKey("contas.id", ondelete='CASCADE'))
     conta = relationship("Conta", back_populates="movimentacoes")
