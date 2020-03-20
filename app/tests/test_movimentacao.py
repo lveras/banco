@@ -27,6 +27,8 @@ def test_cria_movimentacao_deposito(conta_id):
     res = response.json()
     assert response.status_code == 200
     assert res[0]['tipo'] == j['tipo']
-    assert res[0]['valor'] == 99
+    assert res[0]['valor'] == 100
+    assert res[0]['saldo_conta_atual'] == 100
     assert res[1]['tipo'] == 'taxa'
     assert res[1]['valor'] == 1
+    assert res[1]['saldo_conta_atual'] == 99
