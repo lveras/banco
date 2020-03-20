@@ -14,5 +14,6 @@ def test_cria_movimentacao_deposito():
     j = {'conta_id': conta.id, 'tipo': 'deposito', 'valor': 100.0}
     response = client.post(url="/api/v1/movimentacao/", json=j)
     assert response.status_code == 200
-
+    assert j['tipo'] == response.json()['tipo']
+    assert j['valor'] == response.json()['valor']
     crud.conta.remove(db_session=SessionLocal(), id=conta.id)
