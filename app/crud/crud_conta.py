@@ -9,7 +9,8 @@ from app.crud.base import CRUDBase
 
 
 class CRUDConta(CRUDBase[Conta, ContaCreate]):
-    ...
+    def get_movimentacoes(self, db_session: Session, *, obj_in: Conta):
+        pass
 
 
 conta = CRUDConta(Conta)
