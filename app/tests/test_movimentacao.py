@@ -22,7 +22,7 @@ def conta_fake(func):
 
 @conta_fake
 def test_cria_movimentacao_deposito(conta_id):
-    j = {'conta_id': conta_id, 'tipo': 'deposito', 'valor': 100.0}
+    j = {'conta_id': conta_id, 'valor': 100.0}
     response = client.post(url="/api/v1/movimentacao/deposito", json=j)
     res = response.json()
     assert response.status_code == 200
@@ -32,3 +32,19 @@ def test_cria_movimentacao_deposito(conta_id):
     assert res[1]['tipo'] == 'taxa'
     assert res[1]['valor'] == 1
     assert res[1]['saldo_conta_atual'] == 99
+
+
+@conta_fake
+def test_cria_movimentacao_saque(conta_id):
+    j = {'conta_id': conta_id, 'valor': 200.0}
+    client.post(url="/api/v1/movimentacao/deposito", json=j)
+    j = {'conta_id': conta_id, 'tipo': 'saque', 'valor': 100.0}
+    response = client.post(url="/api/v1/movimentacao/saque", json=j)
+    res = response.json()
+    assert response.status_code == 200
+    assert res[0]['tipo'] == j['tipo']
+    assert res[0]['valor'] == -100
+    assert res[0]['saldo_atual'] == 98
+    assert res[1]['tipo'] == 'taxa'
+    assert res[1]['valor'] == -4
+    assert res[1]['saldo_atual'] == 94
