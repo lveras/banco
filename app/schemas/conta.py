@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from .movimentacao import Movimentacao
-from typing import List
+from .movimentacao import Movimentacao, MovimentacaoTransferencia
+from typing import List, Optional, Union
 
 
 class ContaBase(BaseModel):
@@ -21,7 +21,7 @@ class ContaInDBBase(ContaBase):
 
 class Conta(ContaBase):
     id: int = None
-    movimentacoes: List[Movimentacao] = None
+    movimentacoes: Union[List[Movimentacao], List[MovimentacaoTransferencia]] = None
 
     class Config:
         orm_mode = True
