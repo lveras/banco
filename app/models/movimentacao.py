@@ -11,6 +11,8 @@ class Movimentacao(Base):
     id = Column(Integer, primary_key=True, index=True)
     tipo = Column(String)
     valor = Column(Float)
+    taxa = Column(Float)
+    saldo_movimentacao = Column(Float)
     saldo_conta_atual = Column(Float)
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
     conta_id = Column(Integer, ForeignKey("contas.id", ondelete='CASCADE'))

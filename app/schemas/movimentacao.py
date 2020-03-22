@@ -15,13 +15,17 @@ class MovimentacaoCreate(MovimentacaoBase):
 
 class MovimentacaoCreateTipo(MovimentacaoCreate):
     tipo: str = None
+    taxa: float = None
+    saldo_movimentacao: float = None
 
 
 class Movimentacao(MovimentacaoBase):
-    tipo: str = None
-    valor: float = None
-    saldo_conta_atual: float = None
-    created_date: datetime = None
+    tipo: str
+    valor: float
+    taxa: float
+    saldo_movimentacao: float
+    saldo_conta_atual: float
+    created_date: datetime
 
 
 class MovimentacaoInDBBase(MovimentacaoBase):
