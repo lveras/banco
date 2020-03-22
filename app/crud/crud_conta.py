@@ -6,8 +6,8 @@ from app.crud.base import CRUDBase
 
 
 class CRUDConta(CRUDBase[Conta, ContaCreate]):
-    def get_saldo(self, db_session: Session, *, id: int):
-        pass
+    def ver_saldo(self, db_session: Session, *, id: int):
+        return self.get(db_session=db_session, id=id).saldo
 
 
 conta = CRUDConta(Conta)

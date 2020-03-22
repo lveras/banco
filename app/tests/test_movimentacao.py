@@ -40,8 +40,8 @@ def test_cria_movimentacao_saque(conta_id=conta_fake()):
     assert response.status_code == 200
     assert res[0]['tipo'] == j['tipo']
     assert res[0]['valor'] == -100
-    assert res[0]['saldo_atual'] == 98
+    assert res[0]['saldo_conta_atual'] == 98
     assert res[1]['tipo'] == 'taxa'
     assert res[1]['valor'] == -4
-    assert res[1]['saldo_atual'] == 94
+    assert res[1]['saldo_conta_atual'] == 94
     conta_fake(conta_id=conta_id)
