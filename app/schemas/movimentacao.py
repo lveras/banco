@@ -16,8 +16,8 @@ class MovimentacaoCreate(MovimentacaoBase):
     tipo: str
     taxa: float = None
     saldo_movimentacao: float = None
-    conta_origem_id: int = None
-    conta_destino_id: int = None
+    conta_origem_id: Optional[int] = None
+    conta_destino_id: Optional[int] = None
 
 
 class MovCreateSaqueDeposito(MovimentacaoBase):
@@ -35,6 +35,8 @@ class Movimentacao(MovimentacaoBase):
     taxa: float
     saldo_movimentacao: float
     saldo_conta_atual: float
+    conta_origem_id: Optional[int]
+    conta_destino_id: Optional[int]
     created_date: datetime
 
 

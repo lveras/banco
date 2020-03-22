@@ -12,7 +12,8 @@ def create_conta(*, db: Session = Depends(get_db),
     return crud.conta.create(db_session=db, obj_in=conta_in)
 
 
-@router.get("/extrato/{id}", response_model=conta.ContaExtrato)
+@router.get("/extrato/{id}", response_model=conta.ContaExtrato,
+            response_model_skip_defaults=True)
 def ver_extrato_conta(id: int, db: Session = Depends(get_db)):
-    conta = crud.conta.get(db_session=db, id=id)
-    return conta
+    c = crud.conta.get(db_session=db, id=id)
+    return c
