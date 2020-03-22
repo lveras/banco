@@ -14,16 +14,16 @@ def test_cria_conta():
     assert type(data['movimentacoes']) is list
 
 
-def test_pega_extrato_da_conta(conta_id=conta_fake()):
-    j = {'conta_id': conta_id, 'tipo': 'deposito', 'valor': 100.0}
+def test_pega_extrato_da_conta(conta=conta_fake()):
+    j = {'conta_id': conta.id, 'tipo': 'deposito', 'valor': 100.0}
     client.post(url="/api/v1/movimentacao/deposito", json=j)
-    j = {'conta_id': conta_id, 'tipo': 'deposito', 'valor': 200.0}
+    j = {'conta_id': conta.id, 'tipo': 'deposito', 'valor': 200.0}
     client.post(url="/api/v1/movimentacao/deposito", json=j)
     response = client.get(
-        url="/api/v1/conta/extrato/{}".format(conta_id))
+        url="/api/v1/conta/extrato/{}".format(conta.id))
     data = response.json()
     assert response.status_code == 200
     assert 'id' in data
     assert 'movimentacoes' in data
     assert type(data['movimentacoes']) is list
-    conta_fake(conta_id=conta_id)
+    conta_fake(conta=conta)
