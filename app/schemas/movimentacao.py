@@ -19,7 +19,8 @@ class MovimentacaoCreateTipo(MovimentacaoCreate):
 
 class Movimentacao(MovimentacaoBase):
     tipo: str = None
-    conta_id: int = None
+    valor: float = None
+    saldo_conta_atual: float = None
     created_date: datetime = None
 
 

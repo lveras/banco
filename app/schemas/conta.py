@@ -25,3 +25,7 @@ class Conta(ContaBase):
 
     class Config:
         orm_mode = True
+
+
+class ContaExtrato(Conta):
+    saldo: float
