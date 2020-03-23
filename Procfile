@@ -1,1 +1,1 @@
-web: uvicorn app.main:app --host=0.0.0.0 --port=80 --reload
+web: uvicorn --host=0.0.0.0 --port=$PORT app.main:app
