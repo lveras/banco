@@ -1,8 +1,10 @@
 from fastapi.testclient import TestClient
+
 from app.main import app
+from app.tests.test_movimentacao import conta_fake
+
 client = TestClient(app)
 ID_CONTA = ''
-from app.tests.test_movimentacao import conta_fake
 
 
 def test_cria_conta():

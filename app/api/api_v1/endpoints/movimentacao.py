@@ -51,7 +51,8 @@ def create_saque(*, db: Session = Depends(get_db),
 def create_transferencia(*, db: Session = Depends(get_db),
                          movimentacao_in: movimentacao.MovCreateTransferencia):
     if movimentacao_in.conta_destino_id == movimentacao_in.conta_id:
-        raise HTTPException(status_code=400, detail="Movimentacao nao permitida")
+        raise HTTPException(
+            status_code=400, detail="Movimentacao nao permitida")
     verifica_conta(conta_id=movimentacao_in.conta_id, db=db)
     verifica_conta(conta_id=movimentacao_in.conta_destino_id, db=db)
     verifica_saldo(conta_id=movimentacao_in.conta_id,

@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
+from app.crud.base import CRUDBase
 from app.models.conta import Conta
 from app.schemas.conta import ContaCreate
-from app.crud.base import CRUDBase
 
 
 class CRUDConta(CRUDBase[Conta, ContaCreate]):

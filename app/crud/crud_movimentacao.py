@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
+from app.crud.base import CRUDBase
 from app.models.movimentacao import Movimentacao
 from app.schemas.movimentacao import MovimentacaoCreate
-from app.crud.base import CRUDBase
 
 TAXAS = {
     'deposito': lambda x: (abs(x), -abs(x)*0.01, abs(x)-abs(x)*0.01),
